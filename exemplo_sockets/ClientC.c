@@ -1,9 +1,9 @@
 // Client side C program to demonstrate Socket
 // programming
-#include <arpa/inet.h>
+#include <winsock2.h>
 #include <stdio.h>
 #include <string.h>
-#include <sys/socket.h>
+//#include <sys/socket.h>
 #include <unistd.h>
 #define PORT 8080
 
@@ -23,7 +23,7 @@ int main(int argc, char const* argv[])
 
     // Convert IPv4 and IPv6 addresses from text to binary
     // form
-    if (inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr)
+    if (inet_pton(AF_INET, "192.168.0.9", &serv_addr.sin_addr)
         <= 0) {
         printf(
             "\nInvalid address/ Address not supported \n");
