@@ -2,22 +2,34 @@ import grpc
 from concurrent import futures
 import time
 # import the generated classes
-import NumerosComplexos.calculator_pb2 as calculator_pb2
-import NumerosComplexos.calculator_pb2_grpc as calculator_pb2_grpc
+import calculator_pb2
+import calculator_pb2_grpc
 
 # import the original calculator.py
-import NumerosComplexos.calculator as calculator
+from calculator import Calculadora, NumeroComplexo
 
 # create a class to define the server functions, derived from
 # calculator_pb2_grpc.CalculatorServicer
 class CalculatorServicer(calculator_pb2_grpc.CalculatorServicer):
-
-    # calculator.square_root is exposed here
-    # the request and response are of the data type
-    # calculator_pb2.Number
-    def SquareRoot(self, request, context):
+    
+    def Soma(self, request, context):
         response = calculator_pb2.Number()
-        response.value = calculator.square_root(request.value)
+        response.value = Calculadora.soma(request.value)
+        return response
+    
+    def Subtracao(self, request, context):
+        response = calculator_pb2.Number()
+        response.value = Calculadora.subtracao(request.value)
+        return response
+    
+    def Divisao(self, request, context):
+        response = calculator_pb2.Number()
+        response.value = Calculadora.div(request.value)
+        return response
+    
+    def Multiplicacao(self, request, context):
+        response = calculator_pb2.Number()
+        response.value = Calculadora.mult(request.value)
         return response
 
 
