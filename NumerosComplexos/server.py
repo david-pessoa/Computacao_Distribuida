@@ -18,18 +18,18 @@ class CalculatorServicer(calculator_pb2_grpc.ComplexCalculatorServicer):
         return response
     
     def Subtracao(self, request, context):
-        response = calculator_pb2.ComplexNumber()
-        response.value = subtracao(request.value)
+        resultado = subtracao(request.number1, request.number2)
+        response = calculator_pb2.ComplexNumberReply(result= resultado)
         return response
     
     def Divisao(self, request, context):
-        response = calculator_pb2.ComplexNumber()
-        response.value = div(request.value)
+        resultado = div(request.number1, request.number2)
+        response = calculator_pb2.ComplexNumberReply(result= resultado)
         return response
     
     def Multiplicacao(self, request, context):
-        response = calculator_pb2.ComplexNumber()
-        response.value = mult(request.value)
+        resultado = mult(request.number1, request.number2)
+        response = calculator_pb2.ComplexNumberReply(result= resultado)
         return response
 
 

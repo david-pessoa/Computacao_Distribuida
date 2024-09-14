@@ -8,15 +8,26 @@ import calculator_pb2_grpc
 channel = grpc.insecure_channel('localhost:50051')
 
 # create a stub (client)
-stub = calculator_pb2_grpc.ComplexCalculatorStub(channel) #number="4.5 - 3.6i" number="0.1 + 0.2i"
+stub = calculator_pb2_grpc.ComplexCalculatorStub(channel)
+
 
 # create a valid request message
-request = calculator_pb2.ComplexNumberRequest(
-    number1= "4.5 - 3.6i",
-    number2= "0.1 + 0.2i")
+request = calculator_pb2.ComplexNumberRequest( #Os números complexos ficam no formato a + bi
+    number1= "0.1 + 0.2i",
+    number2= "4.5 - 3.6i") #OBS: é importante colocar espaço em branco entre os números e os sinais
 
 # make the call
-response = stub.Soma(request)
+response_soma = stub.Soma(request)
+response_sub = stub.Subtracao(request)
+response_mult = stub.Multiplicacao(request)
+response_div = stub.Divisao(request)
 
 # et voilà
-print(response.result)
+print("Número 1: 0.1 + 0.2i")
+print("Número 2: 4.5 - 3.6i")
+print()
+print("Operações:")
+print("Soma:", response_soma)
+print("Subtração:", response_sub)
+print("multiplicação:", response_mult)
+print("Divisão:", response_div)
