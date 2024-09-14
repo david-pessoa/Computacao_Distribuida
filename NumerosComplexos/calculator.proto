@@ -1,9 +1,18 @@
 syntax = "proto3";
 
-message Number {
-    float value = 1;
+message ComplexNumberRequest {
+    string number1 = 1;
+    string number2 = 2;
 }
 
-service Calculator {
-    rpc SquareRoot(Number) returns (Number) {}
+message ComplexNumberReply {
+    string result = 1;
 }
+
+service ComplexCalculator {
+    rpc Soma(ComplexNumberRequest) returns (ComplexNumberReply) {}
+    rpc Subtracao(ComplexNumberRequest) returns (ComplexNumberReply) {}
+    rpc Multiplicacao(ComplexNumberRequest) returns (ComplexNumberReply) {}
+    rpc Divisao(ComplexNumberRequest) returns (ComplexNumberReply) {}
+}
+

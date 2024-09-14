@@ -25,7 +25,7 @@ if _version_not_supported:
     )
 
 
-class CalculatorStub(object):
+class ComplexCalculatorStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -34,43 +34,91 @@ class CalculatorStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.SquareRoot = channel.unary_unary(
-                '/Calculator/SquareRoot',
-                request_serializer=calculator__pb2.Number.SerializeToString,
-                response_deserializer=calculator__pb2.Number.FromString,
+        self.Soma = channel.unary_unary(
+                '/ComplexCalculator/Soma',
+                request_serializer=calculator__pb2.ComplexNumberRequest.SerializeToString,
+                response_deserializer=calculator__pb2.ComplexNumberReply.FromString,
+                _registered_method=True)
+        self.Subtracao = channel.unary_unary(
+                '/ComplexCalculator/Subtracao',
+                request_serializer=calculator__pb2.ComplexNumberRequest.SerializeToString,
+                response_deserializer=calculator__pb2.ComplexNumberReply.FromString,
+                _registered_method=True)
+        self.Multiplicacao = channel.unary_unary(
+                '/ComplexCalculator/Multiplicacao',
+                request_serializer=calculator__pb2.ComplexNumberRequest.SerializeToString,
+                response_deserializer=calculator__pb2.ComplexNumberReply.FromString,
+                _registered_method=True)
+        self.Divisao = channel.unary_unary(
+                '/ComplexCalculator/Divisao',
+                request_serializer=calculator__pb2.ComplexNumberRequest.SerializeToString,
+                response_deserializer=calculator__pb2.ComplexNumberReply.FromString,
                 _registered_method=True)
 
 
-class CalculatorServicer(object):
+class ComplexCalculatorServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def SquareRoot(self, request, context):
+    def Soma(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def Subtracao(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def Multiplicacao(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def Divisao(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
 
-def add_CalculatorServicer_to_server(servicer, server):
+def add_ComplexCalculatorServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'SquareRoot': grpc.unary_unary_rpc_method_handler(
-                    servicer.SquareRoot,
-                    request_deserializer=calculator__pb2.Number.FromString,
-                    response_serializer=calculator__pb2.Number.SerializeToString,
+            'Soma': grpc.unary_unary_rpc_method_handler(
+                    servicer.Soma,
+                    request_deserializer=calculator__pb2.ComplexNumberRequest.FromString,
+                    response_serializer=calculator__pb2.ComplexNumberReply.SerializeToString,
+            ),
+            'Subtracao': grpc.unary_unary_rpc_method_handler(
+                    servicer.Subtracao,
+                    request_deserializer=calculator__pb2.ComplexNumberRequest.FromString,
+                    response_serializer=calculator__pb2.ComplexNumberReply.SerializeToString,
+            ),
+            'Multiplicacao': grpc.unary_unary_rpc_method_handler(
+                    servicer.Multiplicacao,
+                    request_deserializer=calculator__pb2.ComplexNumberRequest.FromString,
+                    response_serializer=calculator__pb2.ComplexNumberReply.SerializeToString,
+            ),
+            'Divisao': grpc.unary_unary_rpc_method_handler(
+                    servicer.Divisao,
+                    request_deserializer=calculator__pb2.ComplexNumberRequest.FromString,
+                    response_serializer=calculator__pb2.ComplexNumberReply.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'Calculator', rpc_method_handlers)
+            'ComplexCalculator', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('Calculator', rpc_method_handlers)
+    server.add_registered_method_handlers('ComplexCalculator', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class Calculator(object):
+class ComplexCalculator(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def SquareRoot(request,
+    def Soma(request,
             target,
             options=(),
             channel_credentials=None,
@@ -83,9 +131,90 @@ class Calculator(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/Calculator/SquareRoot',
-            calculator__pb2.Number.SerializeToString,
-            calculator__pb2.Number.FromString,
+            '/ComplexCalculator/Soma',
+            calculator__pb2.ComplexNumberRequest.SerializeToString,
+            calculator__pb2.ComplexNumberReply.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def Subtracao(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ComplexCalculator/Subtracao',
+            calculator__pb2.ComplexNumberRequest.SerializeToString,
+            calculator__pb2.ComplexNumberReply.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def Multiplicacao(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ComplexCalculator/Multiplicacao',
+            calculator__pb2.ComplexNumberRequest.SerializeToString,
+            calculator__pb2.ComplexNumberReply.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def Divisao(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ComplexCalculator/Divisao',
+            calculator__pb2.ComplexNumberRequest.SerializeToString,
+            calculator__pb2.ComplexNumberReply.FromString,
             options,
             channel_credentials,
             insecure,

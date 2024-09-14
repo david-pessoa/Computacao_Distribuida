@@ -6,30 +6,30 @@ import calculator_pb2
 import calculator_pb2_grpc
 
 # import the original calculator.py
-from calculator import Calculadora, NumeroComplexo
+from calculator import *
 
 # create a class to define the server functions, derived from
 # calculator_pb2_grpc.CalculatorServicer
-class CalculatorServicer(calculator_pb2_grpc.CalculatorServicer):
+class CalculatorServicer(calculator_pb2_grpc.ComplexCalculatorServicer):
     
     def Soma(self, request, context):
-        response = calculator_pb2.Number()
-        response.value = Calculadora.soma(request.value)
+        resultado = soma(request.number1, request.number2)
+        response = calculator_pb2.ComplexNumberReply(result= resultado)
         return response
     
     def Subtracao(self, request, context):
-        response = calculator_pb2.Number()
-        response.value = Calculadora.subtracao(request.value)
+        response = calculator_pb2.ComplexNumber()
+        response.value = subtracao(request.value)
         return response
     
     def Divisao(self, request, context):
-        response = calculator_pb2.Number()
-        response.value = Calculadora.div(request.value)
+        response = calculator_pb2.ComplexNumber()
+        response.value = div(request.value)
         return response
     
     def Multiplicacao(self, request, context):
-        response = calculator_pb2.Number()
-        response.value = Calculadora.mult(request.value)
+        response = calculator_pb2.ComplexNumber()
+        response.value = mult(request.value)
         return response
 
 
@@ -38,7 +38,7 @@ server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 
 # use the generated function `add_CalculatorServicer_to_server`
 # to add the defined class to the server
-calculator_pb2_grpc.add_CalculatorServicer_to_server(
+calculator_pb2_grpc.add_ComplexCalculatorServicer_to_server(
         CalculatorServicer(), server)
 
 # listen on port 50051

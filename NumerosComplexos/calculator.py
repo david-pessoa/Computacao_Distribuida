@@ -54,6 +54,3 @@ def div(num_string1, num_string2):
   num_b_div = (b * c - a * d) / (c**2 + d**2)
 
   return junta_nuns(num_a_div, num_b_div)
-
-
-
