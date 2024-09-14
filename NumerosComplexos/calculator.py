@@ -1,3 +1,5 @@
+# David Pessoa  10402647
+
 def quebra_num(num_string): # Número vem no formato: a + bi
   lista = num_string.split(" ")
   num_a, sinal, num_b = lista[0],lista[1], lista[2]

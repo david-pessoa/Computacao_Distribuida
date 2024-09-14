@@ -1,3 +1,5 @@
+# David Pessoa  10402647
+
 import grpc
 
 # import the generated classes
@@ -10,11 +12,13 @@ channel = grpc.insecure_channel('localhost:50051')
 # create a stub (client)
 stub = calculator_pb2_grpc.ComplexCalculatorStub(channel)
 
+number1 = "0.1 + 0.2i"
+number2 = "4.5 - 3.6i"
 
 # create a valid request message
 request = calculator_pb2.ComplexNumberRequest( #Os números complexos ficam no formato a + bi
-    number1= "0.1 + 0.2i",
-    number2= "4.5 - 3.6i") #OBS: é importante colocar espaço em branco entre os números e os sinais
+    number1= number1,
+    number2= number2) #OBS: é importante colocar espaço em branco entre os números e os sinais
 
 # make the call
 response_soma = stub.Soma(request)
