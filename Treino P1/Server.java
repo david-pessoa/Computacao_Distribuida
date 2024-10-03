@@ -31,11 +31,8 @@ public class Server extends UnicastRemoteObject implements Methods
     { 
         try 
         { 
-            // Creates an object of the HelloServer class. 
-            Server stub = new Server(); 
-            // Bind this object instance to the name "HelloServer". 
-            
-            // Bind the remote object's stub in the registry
+            Server stub = new Server();  
+             
             Registry registry = LocateRegistry.createRegistry(1099);
             registry.bind("Methods", stub);
             System.out.println("Ligado no registro"); 

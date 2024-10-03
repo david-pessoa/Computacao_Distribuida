@@ -11,13 +11,11 @@ public class Client
             Registry registry = LocateRegistry.getRegistry("localhost");
             Methods stub = (Methods) registry.lookup("Methods");
             answer = stub.EhPrimoGemeo(11, 5); 
-            System.out.println("Resposta do servidor RMI é: \""
-            + answer + "\""); 
+            System.out.println("Resposta do servidor RMI é: "+ answer); 
         } 
         catch (Exception e) 
         { 
-            System.out.println("Methods exception: "
-            + e.getMessage()); 
+            System.out.println("Methods exception: " + e.getMessage()); 
             e.printStackTrace(); 
         } 
     }
