@@ -3,5 +3,5 @@ import java.rmi.RemoteException;
 
 public interface Methods extends Remote
 {
-    public boolean EhPrimoGemeo(int a, int b);
+    public boolean EhPrimoGemeo(int a, int b) throws RemoteException; 
 }

@@ -1,6 +1,6 @@
-import java.rmi.Naming; 
-import java.rmi.RemoteException; 
-import java.rmi.RMISecurityManager; 
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject; 
 
 public class Server extends UnicastRemoteObject implements Methods
@@ -20,7 +20,7 @@ public class Server extends UnicastRemoteObject implements Methods
         return true;
     }
 
-    public boolean EhPrimoGemeo(int a, int b) 
+    public boolean EhPrimoGemeo(int a, int b) throws RemoteException
     { 
         if((a - b == 2 || a - b == -2) && ehPrimo(a) && ehPrimo(b))
             return true;
@@ -32,9 +32,12 @@ public class Server extends UnicastRemoteObject implements Methods
         try 
         { 
             // Creates an object of the HelloServer class. 
-            Server obj = new Server(); 
+            Server stub = new Server(); 
             // Bind this object instance to the name "HelloServer". 
-            Naming.rebind("Hello", obj); 
+            
+            // Bind the remote object's stub in the registry
+            Registry registry = LocateRegistry.createRegistry(1099);
+            registry.bind("Methods", stub);
             System.out.println("Ligado no registro"); 
         } 
         catch (Exception e) 

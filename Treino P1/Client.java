@@ -1,21 +1,16 @@
-import java.rmi.Naming; 
-import java.rmi.RemoteException; 
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry; 
 
 public class Client 
 {
     static boolean answer; 
-    // The Hello object "obj" is the identifier that is 
-  
-    // the Hello interface. 
-    static Methods obj = null; 
     public static void main(String args[]) 
     { 
         try 
         { 
-            obj = (Methods)Naming.lookup("//"
-            + "kvist.cs.umu.se"
-            + "/Hello"); 
-            answer = obj.EhPrimoGemeo(0, 0); 
+            Registry registry = LocateRegistry.getRegistry("localhost");
+            Methods stub = (Methods) registry.lookup("Methods");
+            answer = stub.EhPrimoGemeo(11, 5); 
             System.out.println("Resposta do servidor RMI é: \""
             + answer + "\""); 
         } 
