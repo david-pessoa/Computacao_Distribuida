@@ -11,8 +11,11 @@ public class Receiver {
         Scanner scanner = new Scanner(System.in);
         while(true)
         {
-            System.out.print("Digite o IP da máquina a que deseja se conectar: ");
+            System.out.print("Digite o IP da máquina a que deseja se conectar ou exit para sair: ");
             host = scanner.nextLine();
+            if(host.toLowerCase().equals("exit"))
+                break;
+
             System.out.print("Digite o número da porta: ");
             porta = scanner.nextInt(); scanner.nextLine();
             System.out.print("Digite o nome do arquivo a ser recebido: ");
