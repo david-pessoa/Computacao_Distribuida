@@ -37,7 +37,5 @@ class NotificationService:
         # Lógica de notificação
         print("Enviando confirmação de pedido...")
 
-# Exemplo de uso
-order_service = OrderService()
-order = {"id": 123, "itens": ["item1", "item2"]}
-order_service.process_order(order)
+
+

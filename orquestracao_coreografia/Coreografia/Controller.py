@@ -2,12 +2,10 @@ import os
 from time import sleep
 from carrinho import Carrinho
 from catalogo import Catalogo
-from orquestracao import OrderService
+from coreografia import event_bus
 
 catalogo = Catalogo()
 carrinho = Carrinho()
-order_service = OrderService()
-
 
 while True:
     print(
@@ -41,7 +39,7 @@ Menu:
         book_index = int(input("Escolha um item do carrinho pelo índice: "))
         carrinho.removeDoCarrinho(book_index)
         pedido = catalogo.getLivro(book_index)
-        order_service.process_order(pedido)
+        event_bus.publish("order_created", pedido)
         
     elif choice == 6:
         exit()

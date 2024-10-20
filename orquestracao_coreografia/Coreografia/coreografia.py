@@ -43,6 +43,3 @@ payment_service = PaymentService(event_bus)
 inventory_service = InventoryService(event_bus)
 notification_service = NotificationService(event_bus)
 
-# Iniciando o fluxo com a criação de um pedido
-order = {"id": 123, "itens": ["item1", "item2"]}
-event_bus.publish("order_created", order)
