@@ -2,19 +2,15 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Receiver {
-    private static String host = "";
+public class Receiver { 
+    private static String host = "";//172.16.19.120
     private static int porta;
     private static final int BUFFER_SIZE = 4096;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        while(true)
-        {
             System.out.print("Digite o IP da máquina a que deseja se conectar ou exit para sair: ");
             host = scanner.nextLine();
-            if(host.toLowerCase().equals("exit"))
-                break;
 
             System.out.print("Digite o número da porta: ");
             porta = scanner.nextInt(); scanner.nextLine();
@@ -50,11 +46,9 @@ public class Receiver {
             
                 dos.close();
                 dis.close();
+                scanner.close();
             } catch (IOException e) {
                 e.printStackTrace();
-            } finally {
-                scanner.close();
             }
         }
-    }
 }
