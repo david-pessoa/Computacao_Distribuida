@@ -14,14 +14,13 @@ public class Receiver {
         boolean end = false;
         while(!end){
             System.out.println("\n\n0) Requisitar um arquivo\n1) Encerrar programa");
-
             String option = scanner.nextLine();
             if(option.equals("0")){
                 System.out.println("Endereços disponíveis");
                 for(int i=0; i<NUM_HOSTS; i++){
                     System.out.printf("%d) %s %n", i, HOSTS[i]);
                 }
-
+                
                 System.out.print("Escolha o índice de um endereço: ");
                 try{
                     int indice = scanner.nextInt();
